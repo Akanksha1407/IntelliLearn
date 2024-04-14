@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
 
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
@@ -37,6 +38,14 @@ app.use(
 )
 //cloudinary connection
 cloudinaryConnect();
+
+router.get("/", (req, res) => {
+	res.setHeader("Access-Control-Allow-Origin", "*")
+	res.setHeader("Access-Control-Allow-Credentials", "true");
+	res.setHeader("Access-Control-Max-Age", "1800");
+	res.setHeader("Access-Control-Allow-Headers", "content-type");
+	res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+	});
 
 //routes
 app.use("/api/v1/auth", userRoutes);
